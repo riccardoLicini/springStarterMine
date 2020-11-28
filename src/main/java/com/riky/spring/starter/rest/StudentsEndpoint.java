@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.riky.spring.starter.StudentsService;
+import com.riky.spring.starter.entity.Student;
 import com.riky.spring.starter.model.StudentSearchOutput;
 import com.riky.spring.starter.model.StudentSearchParams;
-import com.riky.spring.starter.model.business.Student;
-import com.riky.spring.starter.service.StudentsService;
 
 @RestController
 @RequestMapping("/ex-1")
@@ -28,7 +28,7 @@ public class StudentsEndpoint {
 	
 	@GetMapping(path = "/alumni", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public StudentSearchOutput postStudent(@RequestParam("name") String name) {
-		return service.getStudent(new StudentSearchParams());
+		return service.getStudents(new StudentSearchParams(name));
 	}
 
 }
