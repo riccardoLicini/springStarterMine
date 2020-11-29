@@ -2,13 +2,18 @@ package com.riky.spring.starter.entity;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+
 import org.springframework.data.annotation.Id;
 
 public class Student {
 	
 	@Id
 	private String id;
+	@Pattern(regexp = "^[a-zA-Z]*$")
 	private String name;
+	@Valid
 	private List<Address> addresses;
 	private Education education;
 	

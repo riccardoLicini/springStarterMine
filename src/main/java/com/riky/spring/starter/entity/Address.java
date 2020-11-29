@@ -1,9 +1,18 @@
 package com.riky.spring.starter.entity;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class Address {
 	
+	@NotNull
 	private String street;
+	
+	@NotNull
+	@Pattern(regexp = "^\\d*$")
 	private String number;
+	
+	@NotNull
 	private String country;
 	
 	public String getStreet() {
