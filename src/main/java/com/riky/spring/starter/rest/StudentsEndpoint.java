@@ -40,7 +40,7 @@ public class StudentsEndpoint {
 		service.insertStudent(student);
 	}
 
-	@GetMapping(path = "/alumni", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/alumni", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<StudentSearchOutput> postStudent(
 			@RequestParam(name = "name", required = false) String name,
 			@RequestParam(name = "educationLevel", required = false) EducationLevel educationLevel,
