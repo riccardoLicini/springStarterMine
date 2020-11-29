@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.riky.spring.starter.StudentsService;
@@ -45,8 +46,8 @@ class StudentsServiceTest {
 		service.insertStudent(toBeInserted);
 		student = toBeInserted;
 		
-		StudentSearchParams params = new StudentSearchParams(studentName);
-		StudentSearchOutput result = service.getStudents(params);
+		StudentSearchParams params = new StudentSearchParams(studentName, null);
+		StudentSearchOutput result = service.getStudents(params, PageRequest.of(0, 3));
 		
 		assertNotNull(result);
 		assertEquals(result.getTotalCount(), 1);
