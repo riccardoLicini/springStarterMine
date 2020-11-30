@@ -1,10 +1,11 @@
 package com.riky.spring.starter.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.After;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,8 +19,12 @@ import com.riky.spring.starter.model.StudentSearchParams;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class StudentsServiceTest {
+public class StudentsServiceTest {
 	
+	public StudentsServiceTest() {
+		super();
+	}
+
 	private static Student student;
 
     @Autowired
@@ -27,7 +32,7 @@ class StudentsServiceTest {
     
 	
 	@Test
-	void testInsertStudent() {
+	public void testInsertStudent() {
 		Student toBeInserted = new Student();
 		student = toBeInserted;
 		Student inserted = service.insertStudent(toBeInserted);
@@ -37,7 +42,7 @@ class StudentsServiceTest {
 	}
 	
 	@Test
-	void testGetStudents() {
+	public void testGetStudents() {
 		String studentName = "Riccardo";
 		
 		Student toBeInserted = new Student();
@@ -47,15 +52,15 @@ class StudentsServiceTest {
 		student = toBeInserted;
 		
 		StudentSearchParams params = new StudentSearchParams(studentName, null);
-		StudentSearchOutput result = service.getStudents(params, PageRequest.of(0, 3));
+		StudentSearchOutput result = service.getStudents(params, new PageRequest(0, 3));
 		
 		assertNotNull(result);
 		assertEquals(result.getTotalCount(), 1);
 		assertEquals(result.getData().get(0).getName(), studentName);
 	}
 	
-	@AfterEach
-	void cleanupStudent() {
+	@After
+	public void cleanupStudent() {
 		service.deleteStudent(student);
 	}
 }

@@ -1,13 +1,17 @@
 package com.riky.spring.starter;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+public class ApplicationTests {
+	
+	public ApplicationTests() {
+		super();
+	}
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
 
 }

@@ -46,7 +46,10 @@ public class StudentsEndpoint {
 			@RequestParam(name = "educationLevel", required = false) EducationLevel educationLevel,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int page) {
 		
-		StudentSearchOutput students = service.getStudents(new StudentSearchParams(name, educationLevel), PageRequest.of(Math.max(0, page - 1), 3));
+		StudentSearchOutput students = service.getStudents(new StudentSearchParams(name, educationLevel), 
+				new PageRequest(Math.max(0, page - 1), 3))
+//				PageRequest.of(Math.max(0, page - 1), 3))
+;
 
 		return ResponseEntity.status(students.getTotalCount() == 0 ? HttpStatus.NO_CONTENT : HttpStatus.OK)
 				.body(students);
